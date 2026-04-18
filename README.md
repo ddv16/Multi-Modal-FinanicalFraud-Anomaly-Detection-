@@ -1,152 +1,62 @@
-🚨 Real-Time Financial Fraud Detection using Anomaly Detection
-📌 Project Overview
+# 💳 Multi-Modal Financial Anomaly Detection with Genetic Algorithm Optimization
 
-This project implements an industry-grade real-time financial fraud detection system using a hybrid anomaly detection approach.
-Instead of relying on a single classifier, the system combines multiple complementary models to assign a risk score to each transaction and make business-aware decisions.
+An advanced AI-powered fraud detection system that combines **Machine Learning**, **Deep Learning**, **Sequential Pattern Analysis**, and **Genetic Algorithm Optimization** to detect suspicious financial transactions in real time.
 
-The pipeline is designed to closely mirror how banks and fintech companies detect fraud in production.
+This project uses a **multi-modal hybrid detection framework** integrating **Isolation Forest**, **Autoencoder**, **LSTM**, and a **Genetic Algorithm (GA)** to optimize ensemble model weights for maximum fraud detection performance.
 
-🎯 Problem Statement
+---
 
-Financial fraud detection is challenging because:
+# 📌 Project Overview
 
-Fraud cases are extremely rare (<1%)
+Financial fraud systems often struggle because one single model cannot capture all fraud patterns.
 
-Fraud patterns evolve over time
+This project solves that problem by:
 
-Wrong decisions lead to:
+- Detecting global anomalies
+- Detecting behavioral deviations
+- Detecting sequence-based fraud patterns
+- Optimizing model contribution weights using **Genetic Algorithm**
 
-Financial loss (false negatives)
+The final system intelligently combines all models to generate accurate fraud risk scores.
 
-Customer dissatisfaction (false positives)
+---
 
-The goal is to:
+# 🚀 Key Features
 
-Identify high-risk transactions in near real-time while minimizing customer friction.
+✅ Multi-model fraud detection system  
+✅ Genetic Algorithm optimized ensemble weights  
+✅ Reduced false positives  
+✅ Real-time fraud scoring  
+✅ Adaptive learning architecture  
+✅ High scalability for banking systems  
+✅ Intelligent ALLOW / VERIFY / BLOCK engine  
 
-🧠 Solution Approach
+---
 
-Instead of binary fraud classification, this system:
+# 🧠 Models Used
 
-Detects anomalous behavior
+## 1️⃣ Isolation Forest
+Detects outlier transactions.
 
-Assigns a continuous risk score
+## 2️⃣ Autoencoder
+Detects abnormal reconstruction errors.
 
-Converts risk into business actions
+## 3️⃣ LSTM
+Learns sequential transaction behavior.
 
-🔹 Models Used
-Model	Purpose
-Isolation Forest	Detects globally rare transactions
-Autoencoder	Detects behavioral deviation from normal spending
-LSTM	Learns temporal fraud patterns from transaction sequences
+## 4️⃣ Genetic Algorithm
+Optimizes weight distribution among all models to maximize fraud detection performance.
 
-Each model contributes a risk signal, which is fused into a final score.
+---
 
-🧱 System Architecture
-Raw Transactions
-      ↓
-Feature Engineering
-      ↓
-Isolation Forest  → Global Anomaly Score
-Autoencoder       → Behavioral Anomaly Score
-LSTM              → Temporal Fraud Probability
-      ↓
-Risk Score Fusion
-      ↓
-ALLOW / VERIFY / BLOCK
+# 🧬 Genetic Algorithm Optimization
 
-📂 Datasets Used
+Instead of manually assigning weights to each model, a **Genetic Algorithm** was used to automatically search for the best ensemble combination.
 
-fraudTrain.csv – Historical transaction data (model training)
+### Optimized Ensemble Formula
 
-fraudTest.csv – Future unseen transactions (real-time simulation)
-
-Each transaction includes:
-
-Transaction amount
-
-Merchant category
-
-Location (customer & merchant)
-
-Timestamp
-
-Fraud label (is_fraud)
-
-⚠️ Fraud labels are used only for evaluation, not during inference.
-
-🔧 Feature Engineering Highlights
-
-Log-transformed transaction amount
-
-Time-based features (hour, day, night indicator)
-
-Location-aware features
-
-Carefully selected categorical encodings
-
-Removal of identifiers and PII to prevent leakage
-
-🔢 Risk Scoring Strategy
-
-Each model output is normalized and combined:
-
-Risk Score =
-0.40 × Isolation Forest
-0.35 × Autoencoder
-0.25 × LSTM
-
-🚦 Decision Logic
-Risk Score Range	Action
-< 0.30	ALLOW
-0.30 – 0.60	VERIFY (OTP / 2FA)
-> 0.60	BLOCK
-
-This mirrors real banking decision systems.
-
-📊 Model Performance
-🔹 Ranking Metrics
-
-ROC-AUC: 0.85
-
-PR-AUC: 0.03 (expected due to extreme class imbalance)
-
-🔹 Operational Metric
-
-Precision @ Top 1% Risk: 4.23%
-
-This is ~8× better than random selection, demonstrating strong concentration of fraud in the highest-risk segment.
-
-🧠 Key Insights
-
-High ROC-AUC confirms strong fraud ranking capability
-
-Low PR-AUC is expected in highly imbalanced fraud datasets
-
-Precision@Top-K is the most meaningful real-world metric
-
-Anomaly detection is effective when fraud labels are scarce
-
-🛠 Tech Stack
-
-Language: Python
-
-ML: scikit-learn
-
-Deep Learning: TensorFlow / Keras
-
-Data Handling: Pandas, NumPy
-
-Visualization: Matplotlib
-
-🚀 Future Improvements
-
-Per-card rolling behavioral features
-
-Dynamic threshold optimization
-
-Cost-sensitive risk scoring
-
-Real-time deployment using FastAPI
-
-Streaming ingestion (Kafka / REST)
+```text id="r6v4f2"
+Final Score =
+(W1 × Isolation Forest Score) +
+(W2 × Autoencoder Score) +
+(W3 × LSTM Score)
